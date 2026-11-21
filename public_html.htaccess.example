@@ -1,0 +1,9 @@
+# OPSI B (cadangan) — hanya bila public_html TIDAK bisa dijadikan symlink.
+# Salin file ini menjadi public_html/.htaccess dan letakkan seluruh project di public_html/.
+# Semua request diarahkan ke folder public/, file sensitif (.env, vendor, storage) diblokir.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(\.env|\.git|composer\.(json|lock)|artisan|vendor/|storage/|database/|app/|config/|routes/|tests/|resources/|bootstrap/) - [F,L,NC]
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

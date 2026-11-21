@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+
+@source '../views/**/*.blade.php';
+@source '../../app/**/*.php';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+
+    /* Palet: merah bata pura, emas prada, krem lontar, hitam arang */
+    --color-bata-50: #fbf3f1;
+    --color-bata-100: #f5e1dc;
+    --color-bata-200: #e9bfb5;
+    --color-bata-400: #c4705e;
+    --color-bata-600: #8f2f23;
+    --color-bata-700: #74241b;
+    --color-bata-800: #5a1c16;
+    --color-bata-900: #3d130f;
+    --color-bata-950: #240a08;
+
+    --color-prada-200: #f1dfa6;
+    --color-prada-300: #e6c86f;
+    --color-prada-400: #d8ad45;
+    --color-prada-500: #c19229;
+    --color-prada-600: #9b721d;
+
+    --color-lontar-50: #fdfbf3;
+    --color-lontar-100: #faf5e2;
+    --color-lontar-200: #f2e8c6;
+
+    --color-arang: #1c1714;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-lontar-50 text-arang font-sans antialiased;
+    }
+
+    h1, h2, h3, h4 {
+        @apply font-display;
+    }
+}
+
+@utility container-site {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+
+/* Aksara Bali / logo diwarnai lewat CSS mask agar bisa ikut warna tema */
+@utility mask-art {
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+/* Pola ornamen tipis (motif wajik) untuk latar bagian */
+@utility bg-ornament {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M24 4 44 24 24 44 4 24Z' fill='none' stroke='%23d8ad45' stroke-opacity='.18'/%3E%3Ccircle cx='24' cy='24' r='3' fill='%23d8ad45' fill-opacity='.18'/%3E%3C/svg%3E");
+}
+
+/* Konten RichEditor dari CMS */
+@utility prose-sanggar {
+    @apply text-[1.05rem] leading-relaxed text-arang/85;
+
+    & p { @apply mb-4; }
+    & h2 { @apply mt-8 mb-3 text-3xl font-semibold text-bata-800; }
+    & h3 { @apply mt-6 mb-2 text-2xl font-semibold text-bata-800; }
+    & ul { @apply mb-4 list-disc pl-6; }
+    & ol { @apply mb-4 list-decimal pl-6; }
+    & a { @apply text-bata-600 underline underline-offset-2; }
+    & blockquote { @apply my-6 border-l-4 border-prada-400 pl-4 italic text-arang/70; }
+    & img { @apply my-6 rounded-xl; }
+}
